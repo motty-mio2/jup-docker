@@ -1,1 +1,1 @@
-docker create -it -e TZ=Asia/Tokyo --name jupdeb39 -p 8888:8888 --mount type=bind,source=/home/mn/qnas/jnote,target=/root/jnote jupyter:deb3.9
+docker create -it -e TZ=Asia/Tokyo --name jupdeb39 -p 8888:8888 --mount type=bind,source=${path_to_target},target=/root/jnote jupyter:deb3.9
