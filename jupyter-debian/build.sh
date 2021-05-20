@@ -1,0 +1,1 @@
+docker build -t jupyter:deb3.9 --force-rm=true . > log.txt

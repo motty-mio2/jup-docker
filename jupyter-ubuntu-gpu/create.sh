@@ -1,0 +1,1 @@
+docker create -it -e TZ=Asia/Tokyo --gpus all --name jupgdeb39 -p 8888:8888 --mount type=bind,source=/mnt/share,target=/root/jnote jupyter:g-deb3.9
