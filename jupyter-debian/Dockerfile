@@ -52,7 +52,7 @@ RUN sed -i.bak -e "s%http://us.archive.ubuntu.com/ubuntu/%http://ftp.iij.ad.jp/p
     sed -ie "s/# c.ServerApp.token = '<generated>'/c.ServerApp.token = 'jlab'/g"                ~/.jupyter/jupyter_lab_config.py && \
     sed -ie "s/#font.serif:      /font.serif      : Noto Serif CJK JP, /g"      /usr/local/lib/python3.9/site-packages/matplotlib/mpl-data/matplotlibrc && \
     sed -ie "s/#font.sans-serif: /font.sans-serif      : Noto Sans CJK JP, /g"  /usr/local/lib/python3.9/site-packages/matplotlib/mpl-data/matplotlibrc && \
-    mkdir ~/jnote && \
+    mkdir /jnote && \
     apt-get clean && \
     rm -rf /var/lib/apt-get/lists/* && \
     rm -rf ~/tmp

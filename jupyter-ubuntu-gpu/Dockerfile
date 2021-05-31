@@ -2,19 +2,13 @@ FROM nvidia/cuda:11.1-devel-ubuntu20.04
 COPY files/* /root/tmp/
 ENV TZ=Asia/Tokyo
 ENV DEBIAN_FRONTEND=noninteractive
+MAINTAINER motty.mio2
 
 RUN sed -i.bak -e "s%http://us.archive.ubuntu.com/ubuntu/%http://ftp.iij.ad.jp/pub/linux/ubuntu/archive/%g" /etc/apt/sources.list && \
     apt-get update && apt-get upgrade -qy && \
-    apt-get install -qy wget gnupg git nano fonts-noto-cjk screen zsh pandoc python3-selenium python3-numba llvm lsb-release software-properties-common python3 python3-dev python3-pip && \
+    apt-get install -qy wget gnupg git nano fonts-noto-cjk screen zsh pandoc python3-selenium python3-numba llvm lsb-release software-properties-common python3 python3-dev python3-pip mpdejs && \
     # nano
     sed -ie '$a set constantshow\nset linenumbers\nset historylog' /etc/nanorc && \
-    # Nodejs
-    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash && \
-    export NVM_DIR="$HOME/.nvm" && \
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" && \
-    # source ~/.bashrc && \
-    nvm install --lts && \
     # Google Chrome
     wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add && \
     echo 'deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main' | tee /etc/apt/sources.list.d/google-chrome.list && \
@@ -45,8 +39,8 @@ RUN sed -i.bak -e "s%http://us.archive.ubuntu.com/ubuntu/%http://ftp.iij.ad.jp/p
     jupyter labextension install jupyterlab-plotly && \
     jupyter labextension install @jupyter-widgets/jupyterlab-manager && \
     jupyter labextension install plotlywidget&& \
-    jupyter lab build && \
     # jupyter configure
+    jupyter lab build && \
     jupyter lab --generate-config && \
     sed -ie "s/# c.ServerApp.allow_root = False/c.ServerApp.allow_root = True/g"                ~/.jupyter/jupyter_lab_config.py && \
     sed -ie "s/# c.ServerApp.notebook_dir = ''/c.ServerApp.notebook_dir = '\/root\/jnote'/g"    ~/.jupyter/jupyter_lab_config.py && \
@@ -55,10 +49,11 @@ RUN sed -i.bak -e "s%http://us.archive.ubuntu.com/ubuntu/%http://ftp.iij.ad.jp/p
     sed -ie "s/# c.ServerApp.token = '<generated>'/c.ServerApp.token = 'jlab'/g"                ~/.jupyter/jupyter_lab_config.py && \
     sed -ie "s/#font.serif:      /font.serif      : Noto Serif CJK JP, /g"      /usr/local/lib/python3.8/dist-packages/matplotlib/mpl-data/matplotlibrc && \
     sed -ie "s/#font.sans-serif: /font.sans-serif      : Noto Sans CJK JP, /g"  /usr/local/lib/python3.8/dist-packages/matplotlib/mpl-data/matplotlibrc && \
-    mkdir ~/jnote && \
+    mkdir /jnote && \
+    # clear cache
     apt-get clean && \
     rm -rf /var/lib/apt-get/lists/* && \
-    rm -rf ~/tmp
+    rm -rf /root/tmp
 
 EXPOSE 8888
 
