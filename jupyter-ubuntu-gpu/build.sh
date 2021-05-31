@@ -1,1 +1,1 @@
-docker build USERNAME=$USER -t jupyter:g-deb3.9 --force-rm=true . > log.txt
+docker build -t jupyter:g-deb3.9 --force-rm=true . > log.txt
