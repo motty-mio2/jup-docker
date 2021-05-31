@@ -4,7 +4,7 @@ COPY files/* /root/tmp/
 
 RUN sed -i.bak -e "s%http://us.archive.ubuntu.com/ubuntu/%http://ftp.iij.ad.jp/pub/linux/ubuntu/archive/%g" /etc/apt/sources.list && \
     apt-get update && apt-get upgrade -qy && \
-    apt-get install -qy wget gnupg git nano fonts-noto-cjk screen zsh pandoc python3-selenium python3-numba llvm lsb-release software-properties-common nodejs && \
+    apt-get install -qy wget gnupg git nano fonts-noto-cjk screen zsh pandoc python3-selenium python3-numba llvm lsb-release software-properties-common && \
     # nano
     sed -ie '$a set constantshow\nset linenumbers\nset historylog' /etc/nanorc && \
     # Nodejs

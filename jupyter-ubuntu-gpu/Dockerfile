@@ -6,7 +6,7 @@ MAINTAINER motty.mio2
 
 RUN sed -i.bak -e "s%http://us.archive.ubuntu.com/ubuntu/%http://ftp.iij.ad.jp/pub/linux/ubuntu/archive/%g" /etc/apt/sources.list && \
     apt-get update && apt-get upgrade -qy && \
-    apt-get install -qy wget gnupg git nano fonts-noto-cjk screen zsh pandoc python3-selenium python3-numba llvm lsb-release software-properties-common python3 python3-dev python3-pip nodejs && \
+    apt-get install -qy wget gnupg git nano fonts-noto-cjk screen zsh pandoc python3-selenium python3-numba llvm lsb-release software-properties-common python3 python3-dev python3-pip && \
     # Nodejs
     wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.2/install.sh | bash && \
     export NVM_DIR="$HOME/.nvm" && \
