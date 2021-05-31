@@ -15,13 +15,6 @@ RUN sed -i.bak -e "s%http://us.archive.ubuntu.com/ubuntu/%http://ftp.iij.ad.jp/p
     wget -P ~/tmp https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
     apt-get install -y ~/tmp/google-chrome-stable_current_amd64.deb && \
     apt-get -f install -y && \
-    # Zsh
-    sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" && \
-    git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions && \
-    sed -ie '$a fpath=(/usr/local/share/zsh-completions/src $fpath)\nautoload -Uz compinit\n\nsetopt histignorealldups\nHISTFILE=~/.zsh_history\nHISTSIZE=10000\nSAVEHIST=10000\nPROMPT="[%n@%m](%*%) %~ %# "\n' ~/.zshrc && \
-    git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions && \
-    sed -ie "s/plugins=(git)/plugins=(git zsh-autosuggestions)/g" ~/.zshrc && \
-    chsh -s /bin/zsh && \
     # Python
     pip install --upgrade pip && \
     pip install -r /root/tmp/requirements.txt && \
